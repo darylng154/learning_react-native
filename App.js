@@ -1,11 +1,12 @@
 import {View, Text, StyleSheet} from 'react-native';
 
-function box(text, style)
+function box(text, viewStyle, textStyle)
 {
   return (
     <View
-    style = {style}>
-      <Text>
+    style = {viewStyle}>
+      <Text
+      style = {textStyle}>
         {text}
       </Text>
     </View>
@@ -47,6 +48,22 @@ const styles = StyleSheet.create
       backgroundColor: 'pink'
     },
 
+    boxPercent:
+    {
+      width: '50%',
+      height: '20%',
+      paddingVertical: '10%',
+      paddingHorizontal: '5%',
+      margin: 10,
+      backgroundColor: 'pink'
+    },
+
+    border:
+    {
+      borderWidth: 2,
+      borderColor: 'purple',
+    },
+
     lightbluebox:
     {
       backgroundColor: 'lightblue',
@@ -55,6 +72,14 @@ const styles = StyleSheet.create
     lightgreenbox:
     {
       backgroundColor: 'lightgreen',
+    },
+
+    textBorder:
+    {
+      borderRadius: 5,
+      backgroundColor: 'white',
+      paddingHorizontal: 5,
+      alignContent: 'center'
     }
   }
 );
@@ -71,9 +96,13 @@ function App()
 
     {/* Use Array for Multiple Styles
         - last style takes precedence */}
-    {box('Light Blue Box w/ Box Style First', [styles.box, styles.lightbluebox])}
+    {/* {box('Light Blue Box w/ Box Style First', [styles.box, styles.lightbluebox])}
     {box('Light Blue Box w/ Box Style Last', [styles.lightbluebox, styles.box])}
-    {box('Light Green Box', [styles.box, styles.lightgreenbox])}
+    {box('Light Green Box', [styles.box, styles.lightgreenbox])} */}
+
+    {box('Light Blue Box w/ Box Style First', [styles.border, styles.boxPercent, styles.lightbluebox], styles.textBorder)}
+    {box('Light Blue Box w/ Box Style Last', [styles.lightbluebox, styles.boxPercent], styles.textBorder)}
+    {box('Light Green Box', [styles.boxPercent, styles.lightgreenbox], styles.textBorder)}
 
     </View>
   );
