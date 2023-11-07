@@ -1,78 +1,81 @@
-import  {View, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet} from 'react-native';
 
-// import Custom Component Greet
-import Greet from './components/Greet'
-
-function inlineStyle(greet1, greet2)
+function box(text, style)
 {
   return (
     <View
-    // inline styling
-    style = 
-    {
-      {
-        flex: 1,
-        backgroundColor: "cyan",
-        padding: 60
-      }
-    }>
-  
-      {greet1}
-      {greet2}
-  
+    style = {style}>
+      <Text>
+        {text}
+      </Text>
     </View>
   );
 }
 
-function styleSheet(greet1, greet2)
-{
-  return (
-    <View
-    // Style Sheet
-    style = {styles.container}>
-  
-      {greet1}
-      {greet2}
-  
-    </View>
-  );
-}
-
-// StyleSheet w/ 2 styles
-// - this can only be used within this file
-//    => use Global StyleSheet w/ 'export const styles ...'
 const styles = StyleSheet.create
 (
-  // object w/ key value pair
-  // value = style object
   {
     container: 
     {
       flex: 1,
-      backgroundColor: "lightblue",
+      backgroundColor: 'cyan',
       padding: 60
     },
 
-    title: {}
+    // lightbluebox:
+    // {
+    //   backgroundColor: 'lightblue',
+    //   width: 100,
+    //   height: 100,
+    //   padding: 10
+    // },
+
+    // lightgreenbox:
+    // {
+    //   backgroundColor: 'lightgreen',
+    //   width: 100,
+    //   height: 100,
+    //   padding: 10
+    // }
+
+    // Consolidating Styles
+    box:
+    {
+      width: 100,
+      height: 100,
+      padding: 10,
+      backgroundColor: 'pink'
+    },
+
+    lightbluebox:
+    {
+      backgroundColor: 'lightblue',
+    },
+
+    lightgreenbox:
+    {
+      backgroundColor: 'lightgreen',
+    }
   }
 );
-
-const greet1 =
-  <Greet
-  style = {styles.title}
-  name = "Bruce Wayne">
-  </Greet>
-
-const greet2 =
-  <Greet
-  name = "Clark Kent">
-  </Greet>
 
 function App()
 {
   return (
-    // inlineStyle(greet1, greet2)
-    styleSheet(greet1, greet2)
+    <View
+    style = {styles.container}
+    >
+    
+    {/* {box('Light Blue Box', styles.lightbluebox)}
+    {box('Light Green Box', styles.lightgreenbox)} */}
+
+    {/* Use Array for Multiple Styles
+        - last style takes precedence */}
+    {box('Light Blue Box w/ Box Style First', [styles.box, styles.lightbluebox])}
+    {box('Light Blue Box w/ Box Style Last', [styles.lightbluebox, styles.box])}
+    {box('Light Green Box', [styles.box, styles.lightgreenbox])}
+
+    </View>
   );
 }
 
