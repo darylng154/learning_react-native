@@ -1,94 +1,79 @@
-import {View, Button, Text, Modal} from 'react-native';
+import  {View, StyleSheet} from 'react-native';
 
-// controls Modal's visability w/ State variable
-import { useState } from 'react';
+// import Custom Component Greet
+import Greet from './components/Greet'
 
-// different rendering for iOS & Android
-// - use custom buttons to match styles
-// - modal has weird padding interaction (View padding ~ 2x Modal padding)
-
-// *Note: need to pass state variable to Modal*
-// const modal =
-function modal(visability, setVisability)
+function inlineStyle(greet1, greet2)
 {
-  return (
-    <Modal
-    visible = {visability}
-    onRequestClose = { () => setVisability(false)} // when back is pressed
-    animationType= 'slide'
-    // animationType= 'fade'
-
-    // only affects iOS & not Android
-    // presentationStyle='fullScreen'
-    // presentationStyle='formSheet'
-    presentationStyle='pageSheet'
-    style = 
-    {
-      {
-        margin: 0,
-        padding: 0
-      }
-    }
-    >
-      <View
-      style = 
-      {
-        {
-          flex: 1,
-          backgroundColor: "plum",
-          paddingVertical: 60,
-          paddingHorizontal: 60
-        }
-      }>
-        <Text>
-          Modal Mode
-        </Text>
-
-        <Button
-          title = "Disable Modal"
-          color = "lightblue"
-          onPress = {() => setVisability(false)}
-        />
-      </View>
-    </Modal>
-  );
-}
-
-function button(setVisability)
-{
-  return (
-    <Button 
-    title = "Enable Modal"
-    onPress = {() => setVisability(true)}
-    color = "midnightblue"
-    // disabled  // makes button unclickable
-    />
-  );
-}
-
-function App()
-{
-  const [isModalVisible, setIsModalVisable] = useState(false);  // default value = false
-
   return (
     <View
+    // inline styling
     style = 
     {
       {
         flex: 1,
-        backgroundColor: 'cyan',
-        paddingVertical: 60,
-        paddingHorizontal: 60
+        backgroundColor: "cyan",
+        padding: 60
       }
     }>
-    
-    {button(setIsModalVisable)}
-
-    {modal(isModalVisible, setIsModalVisable)}
-      
+  
+      {greet1}
+      {greet2}
+  
     </View>
   );
 }
 
+function styleSheet(greet1, greet2)
+{
+  return (
+    <View
+    // Style Sheet
+    style = {styles.container}>
+  
+      {greet1}
+      {greet2}
+  
+    </View>
+  );
+}
+
+// StyleSheet w/ 2 styles
+// - this can only be used within this file
+//    => use Global StyleSheet w/ 'export const styles ...'
+const styles = StyleSheet.create
+(
+  // object w/ key value pair
+  // value = style object
+  {
+    container: 
+    {
+      flex: 1,
+      backgroundColor: "lightblue",
+      padding: 60
+    },
+
+    title: {}
+  }
+);
+
+const greet1 =
+  <Greet
+  style = {styles.title}
+  name = "Bruce Wayne">
+  </Greet>
+
+const greet2 =
+  <Greet
+  name = "Clark Kent">
+  </Greet>
+
+function App()
+{
+  return (
+    // inlineStyle(greet1, greet2)
+    styleSheet(greet1, greet2)
+  );
+}
 
 export default App;
