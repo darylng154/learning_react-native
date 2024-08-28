@@ -5,7 +5,9 @@
     "paths": {
       "@/*": [
         "./*"
-      ]
+      ],
+      "@notes/*": ["./notes/*"],
+      "@assets/*": ["./assets/*"],
     }
   },
   "include": [
