@@ -6,8 +6,10 @@
       "@/*": [
         "./*"
       ],
-      "@notes/*": ["./notes/*"],
       "@assets/*": ["./assets/*"],
+      "@notes/*": ["./notes/*"],
+      "@screens/*": ["./screens/*"],
+      "@routes/*": ["./routes/*"]
     }
   },
   "include": [
